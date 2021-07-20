@@ -1,62 +1,71 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Street Group - Technical Exercise
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> This excercise is designed to let you show your understanding of web appication development,
+> as well as give you an opportunity to showcase some Laravel skills. While we're happy for people
+> to go the extra mile, it's absolutely not necessary to add any features above and beyond the ones specified
+> below. We'd rather see a small amount of solid, sensible code than lots of rushed and incomplete code.
 
-## About Laravel
+In this exercise you will be adding a couple of new features to a simple Laravel application,
+which allows people to share and vote on their favourite dog photos.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Firstly, you'll need to get the application up and running. There are a couple of prerequisites
+you'll need to install:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* [PHP](https://www.php.net/manual/en/install.php)
+* [Composer](https://getcomposer.org/doc/00-intro.md)
+* [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Once you've got these, clone this repository, and then run the following commands:
 
-## Learning Laravel
+```
+composer install
+php artisan migrate:fresh
+php artisan db:seed
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You should then be able to run `php artisan serve`, and open up [http://localhost:8000](http://localhost:8000) 
+in your browser to see the application.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Step One
 
-## Laravel Sponsors
+We'd like to be able to upload our own dog pictures to the site. On the homepage, there's a link to
+a "Add your own dog" page, which is currently unfinished - we'd like you to finish it!
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+The upload should:
 
-### Premium Partners
+* Present a form that asks for a name and an image, and when submitted:
+    * Saves a new picture to the database
+    * Saves the uploaded file the public folder
+    * Redirects the user back to the homepage.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+There is stubbed out code in a couple of places as a starting point:
 
-## Contributing
+* `resources/views/upload.blade.php` - this should be extended to add a new upload form
+* `app/Http/Controllers/PictureController` - please implement the `store` method here
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+There is a test in `tests/Feature/PictureControllerTest` which should pass once this is implemented. 
+You can run the tests by running `php artisan test`.
 
-## Code of Conduct
+Feel free to style the form however you'd like - the application uses [Tailwind](https://tailwindcss.com/) for 
+styling, or you can add your own custom css to `public/css/app.css`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Step Two
 
-## Security Vulnerabilities
+We'd now like to be able to upvote our favourite dogs. Each picture in the database has a `votes` column
+already - we need you to implement a feature that:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* Allows users to send a post request to `/pictures/{picture}/upvote` (where `{picture}` is an ID)
+* Increments the vote count for that picture by one
+* Redirects to the homepage once done
 
-## License
+You should also add a supporting test case for this in `tests/Feature/PictureControllerTest` - there 
+is a commented out `test_upvote_a_dog` method for this purpose.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Supporting Documentation
+
+* [Laravel Docs](https://laravel.com/docs/8.x)
+* [Tailwind Docs](https://tailwindcss.com/docs)
+
+Feel free to refactor as much or as little as you'd like - if you feel the tests could be improved, or
+would like to implement the feature in a different way, that's absolutely fine. 
+

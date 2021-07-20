@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Picture;
 
 class PictureController extends Controller
@@ -37,6 +38,17 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // See PictureControllerTest to see what this should do
+    }
+
+    /**
+     * Upvote a dog by ID
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function upvote(Request $request, Picture $picture)
+    {
+        
     }
 }
