@@ -35,7 +35,7 @@ The upload should:
 
 * Present a form that asks for a name and an image, and when submitted:
     * Saves a new picture to the database
-    * Saves the uploaded file the public folder
+    * Saves the uploaded file to the public folder
     * Redirects the user back to the homepage.
 
 There is stubbed out code in a couple of places as a starting point:
@@ -54,7 +54,7 @@ styling, or you can add your own custom css to `public/css/app.css`.
 We'd now like to be able to upvote our favourite dogs. Each picture in the database has a `votes` column
 already - we need you to implement a feature that:
 
-* Allows users to send a post request to `/pictures/{picture}/upvote` (where `{picture}` is an ID)
+* Allows users to send a `POST` request to `/pictures/{picture}/upvote` (where `{picture}` is an ID)
 * Increments the vote count for that picture by one
 * Redirects to the homepage once done
 
