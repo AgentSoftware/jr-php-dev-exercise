@@ -1,6 +1,6 @@
 # Street Group - Technical Exercise
 
-> This excercise is designed to let you show your understanding of web appication development,
+> This excercise is designed to let you show your understanding of web application development,
 > as well as give you an opportunity to showcase some Laravel skills. While we're happy for people
 > to go the extra mile, it's absolutely not necessary to add any features above and beyond the ones specified
 > below. We'd rather see a small amount of solid, sensible code than lots of rushed and incomplete code.
