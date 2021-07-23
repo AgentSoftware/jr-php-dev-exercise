@@ -19,8 +19,8 @@ Once you've got these, clone this repository, and then run the following command
 
 ```
 composer install
-php artisan migrate:fresh
-php artisan db:seed
+cp .env.example .env
+php artisan app:setup
 ```
 
 You should then be able to run `php artisan serve`, and open up [http://localhost:8000](http://localhost:8000) 
